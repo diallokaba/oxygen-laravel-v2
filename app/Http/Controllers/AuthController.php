@@ -19,4 +19,9 @@ class AuthController extends Controller
         $token = $user->createToken('abcdxyz')->accessToken;
         return response()->json(['token' => $token], 200);
     }
+
+    public function getConnectedUserByToken(){
+        $user = auth()->user();
+        return response()->json(['user' => $user], 200);
+    }
 }

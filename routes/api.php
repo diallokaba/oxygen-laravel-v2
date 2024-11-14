@@ -27,3 +27,7 @@ Route::prefix('v1')->group(function () {
 Route::prefix('v1')->group(function () {
     Route::post('/auth/login', [AuthController::class, 'login']);
 });
+
+Route::middleware('auth:api')->prefix('v1')->group(function () {
+    Route::get('/auth/connected', [AuthController::class, 'getConnectedUserByToken']);
+});
