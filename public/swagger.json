@@ -398,7 +398,6 @@
         }
       }
     },
-    
     "/api/v1/auth/login": {
       "post": {
         "summary": "Authendtification",
@@ -479,6 +478,66 @@
           },
           "401": {
             "description": "Échec de l'authentification",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Identifiants incorrects."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/auth/connected": {
+      "get": {
+        "summary": "Récupération de l'utilisateur connecté",
+        "description": "Récupération de l'utilisateur connecté à travers son token",
+        "operationId": "getConnectedUserByToken",
+        "responses": {
+          "200": {
+            "description": "Utilisateur récupéré avec succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "nom": {
+                      "type": "string",
+                      "description": "Nom de l'utilisateur connecté",
+                      "example": "John"
+                    },
+                    "prenom": {
+                      "type": "string",
+                      "description": "Prénom de l'utilisateur connecté",
+                      "example": "Doe"
+                    },
+                    "email": {
+                      "type": "email",
+                      "description": "email de l'utilisateur connecté",
+                      "example": "johndoe@example.com"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Échec votre token a déjà expiré",
             "content": {
               "application/json": {
                 "schema": {
