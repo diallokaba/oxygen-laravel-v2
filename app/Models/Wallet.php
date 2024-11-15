@@ -23,4 +23,11 @@ class Wallet extends Model
     {
         return $this->balance >= $amount;
     }
+
+    protected $hidden = [
+        'user_id',
+        'id',
+        'created_at',
+        'updated_at'
+    ];
 }

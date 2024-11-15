@@ -21,7 +21,8 @@ class AuthController extends Controller
     }
 
     public function getConnectedUserByToken(){
-        $user = auth()->user();
-        return response()->json(['user' => $user], 200);
+        $user =  User::find(auth()->user()->id);
+        $user->load('wallet');
+        return response()->json( $user, 200);
     }
 }
